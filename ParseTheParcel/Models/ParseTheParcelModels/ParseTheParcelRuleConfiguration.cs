@@ -11,6 +11,8 @@ namespace ParseTheParcel.Models.ParseTheParcelModels
     {
         public void Configure(EntityTypeBuilder<ParseTheParcelRule> builder)
         {
+            builder.HasIndex(p => p.RuleOrder).IsUnique();
+
             builder.HasData(
                 new ParseTheParcelRule
                 {
