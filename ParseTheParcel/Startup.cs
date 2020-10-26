@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ParseTheParcel.Models;
 using ParseTheParcel.Services.ParseAndParcelServices;
 
 namespace ParseTheParcel
@@ -24,6 +26,10 @@ namespace ParseTheParcel
 
             services.AddControllersWithViews();
 
+            // TODO: ConnectionString is only configured for Dev, NO prod DB provided
+            services.AddDbContext<ParseTheParcelDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddScoped<IParseAndParcelService, ParseAndParcelService>();
 
             // In production, the React files will be served from this directory
@@ -31,6 +37,8 @@ namespace ParseTheParcel
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            // TODO: Add Auth to the project
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
