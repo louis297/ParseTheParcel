@@ -30,7 +30,7 @@ namespace ParseTheParcel
             services.AddDbContext<ParseTheParcelDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<IParseAndParcelService, ParseAndParcelService>();
+            services.AddScoped<IParseTheParcelService, ParseTheParcelService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
