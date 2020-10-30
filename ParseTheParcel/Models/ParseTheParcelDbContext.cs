@@ -11,7 +11,8 @@ namespace ParseTheParcel.Models
     public class ParseTheParcelDbContext: DbContext
     {
         public DbSet<ParseTheParcelRule> parseTheParcelRules { get; set; }
-        public ParseTheParcelDbContext()
+        public ParseTheParcelDbContext(DbContextOptions<ParseTheParcelDbContext> options)
+            :base(options)
         {
 
         }

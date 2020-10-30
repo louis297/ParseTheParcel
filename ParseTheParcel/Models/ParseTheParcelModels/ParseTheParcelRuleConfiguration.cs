@@ -38,7 +38,7 @@ namespace ParseTheParcel.Models.ParseTheParcelModels
                 },
                 new ParseTheParcelRule
                 {
-                    RuleID = 1,
+                    RuleID = 3,
                     RuleName = "Large",
                     RuleOrder = 3,
                     Length = 400,
