@@ -17,17 +17,24 @@ namespace ParseTheParcel.Services.ParseAndParcelServices
         {
             _dbContext = dbContext;
             parseRules = new List<ParseTheParcelRule>();
-            UpdateRules();
+            ReloadRules();
         }
         public double? ParseTheParcel(ParcelDTO parcel)
         {
             foreach(var rule in parseRules)
             {
-
+                if(    parcel.Length <= rule.Length
+                    && parcel.Breadth <= rule.Breadth
+                    && parcel.Height <= rule.Height
+                    && parcel.Weight <= rule.Weight
+                  )
+                {
+                    return rule.Price;
+                }
             }
             return null;
         }
-        public void UpdateRules()
+        public void ReloadRules()
         {
             parseRules = _dbContext
                 .parseTheParcelRules

@@ -9,6 +9,6 @@ namespace ParseTheParcel.Services.ParseAndParcelServices
     public interface IParseTheParcelService
     {
         public double? ParseTheParcel(ParcelDTO parcel);
-        public void UpdateRules();
+        public void ReloadRules();
     }
 }
