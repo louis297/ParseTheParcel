@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ParseTheParcel.Models.ParseTheParcelModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace ParseTheParcel.Models
 {
     public class ParseTheParcelDbContext: DbContext
     {
+        public DbSet<ParseTheParcelRule> parseTheParcelRules { get; set; }
         public ParseTheParcelDbContext()
         {
 
