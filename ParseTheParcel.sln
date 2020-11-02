@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30608.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParseTheParcel", "ParseTheParcel\ParseTheParcel.csproj", "{6F2CF9A3-2523-4DA8-B9C9-C0316D924480}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParseTheParcel", "ParseTheParcel\ParseTheParcel.csproj", "{6F2CF9A3-2523-4DA8-B9C9-C0316D924480}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParseTheParcelTest", "ParseTheParcelTest\ParseTheParcelTest.csproj", "{C789FAEA-6D1C-4563-92C8-2CBC8F505E62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParseTheParcelTest", "ParseTheParcelTest\ParseTheParcelTest.csproj", "{C789FAEA-6D1C-4563-92C8-2CBC8F505E62}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6F2CF9A3-2523-4DA8-B9C9-C0316D924480} = {6F2CF9A3-2523-4DA8-B9C9-C0316D924480}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
