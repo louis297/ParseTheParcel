@@ -1,18 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ParseTheParcel.Config;
 using ParseTheParcel.DTOs.ParseTheParcelDTOs;
 using ParseTheParcel.ResponseModels.ParseTheParcelResponseModels;
 using ParseTheParcel.Services.ParseAndParcelServices;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ParseTheParcel.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class ParseTheParcelController : Controller
     {
@@ -30,6 +26,18 @@ namespace ParseTheParcel.Controllers
         {
             try
             {
+                if(parcel.Length <= 0 
+                    || parcel.Breadth <= 0 
+                    || parcel.Height <= 0 
+                    || parcel.Weight <= 0)
+                {
+                    return new ParseTheParcelResponseModel
+                    {
+                        isSuccess = false,
+                        Message = "The input value should not be negative.",
+                        Price = 0
+                    };
+                }
                 double? price = _service.ParseTheParcel(parcel);
                 if (price is double priceValue)
                 {
@@ -48,7 +56,7 @@ namespace ParseTheParcel.Controllers
                     return new ParseTheParcelResponseModel
                     {
                         isSuccess = false,
-                        Message = "The parcel is either too large or too heavy",
+                        Message = "The parcel is either too large or too heavy.",
                         Price = 0
                     };
                 }

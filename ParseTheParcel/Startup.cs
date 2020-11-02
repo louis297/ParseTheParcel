@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using ParseTheParcel.Models;
 using ParseTheParcel.Services.ParseAndParcelServices;
+using System;
 
 namespace ParseTheParcel
 {
@@ -38,7 +39,31 @@ namespace ParseTheParcel
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Parse The Parcel API",
+                    Description = ".net Core Web API Backend for Parse The Parcel Project",
+                    //TODO: term of service is set to google currently
+                    TermsOfService = new Uri("https://www.google.com"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Louis Liu",
+                        Email = string.Empty,
+                        //TODO: contact url is set to google currently
+                        Url = new Uri("https://www.google.com"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "None License",
+                        //TODO: license is set to google currently
+                        Url = new Uri("https://www.google.com"),
+                    }
+                });
+            });
+
             // TODO: Add Auth to the project
         }
 
@@ -58,8 +83,8 @@ namespace ParseTheParcel
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Parse The Parcel API v1");
-                c.RoutePrefix = string.Empty;
+                c.SwaggerEndpoint("/swagger/swagger.json", "Parse The Parcel API v1");
+                c.RoutePrefix = "docs";
             });
 
             app.UseHttpsRedirection();
